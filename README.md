@@ -1,7 +1,7 @@
 # Libreria css utilizada 
-Material Design for Bootstrap 5 
-https://mdbootstrap.com/docs/b5/react/
+Bootstrap 5 
 
-# Instalacion Material Design for Bootstrap 5 
-yarn add mdb-react-ui-kit 
-npm i mdb-react-ui-kit
+
+# Instalacion Bootstrap 5 
+
+npm install bootstrap@next
