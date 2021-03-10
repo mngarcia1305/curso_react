@@ -2,8 +2,12 @@ import Item from './Item.jsx';
 
 const ItemListContainer = (props) => {
     const listItems = props.products.map((prop, id) =>
-    <div className='col' key = {id}>
-    <Item  image={prop.image} title={prop.title} text={prop.text} />
+    <div className='col' key = {prop.id}>
+    <Item
+    image={prop.image}
+    title={prop.title}
+    text={prop.text}
+    stock={prop.stock} />
     </div>
 );
     return (

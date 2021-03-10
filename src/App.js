@@ -3,24 +3,32 @@ import NavBar from './components/NavBar.jsx';
 
 const products = [
   {
-    image: 'prod-1.webp',
-    title: 'Dodge RAM',
-    text: 'Autaso, 75.000 km. Full. Joya nunca taxi.  bla bla bla'
+    id:1,
+    image: 'prod-1.png',
+    title: 'Iams Adulto Large & Giant',
+    text: 'Alimento para perros - 15 Kg',
+    stock: 5
   },
   {
-    image: 'prod-2.webp',
-    title: 'Volkswagen Vento',
-    text: 'Autaso, 75.000 km. Full. Joya nunca taxi.  bla bla bla.'
+    id:2,
+    image: 'prod-2.png',
+    title: 'Alimento Old Prince',
+    text: 'Receta Original Para Perro  - 20Kg',
+    stock: 0
   },
   {
-    image: 'prod-3.webp',
-    title: 'Citroen C4',
-    text: 'Autaso, 75.000 km. Full. Joya nunca taxi.  bla bla bla.'
+    id:3,
+    image: 'prod-3.png',
+    title: 'VitalCat Balanced',
+    text: 'Alimento para Gato Adulto - 2 Kg',
+    stock: 7
   },
   {
-    image: 'prod-4.webp',
-    title: 'Volkswagen Golf',
-    text: 'Autaso, 75.000 km. Full. Joya nunca taxi.  bla bla bla.'
+    id:4,
+    image: 'prod-4.png',
+    title: 'Absorsol',
+    text: 'Piedras Sanitarias  - 3,6 Kg.',
+    stock: 4
   }
 ]
 
