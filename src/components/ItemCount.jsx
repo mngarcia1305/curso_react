@@ -22,8 +22,6 @@ const ItemCount = ({stock, initial, onAdd}) => {
                 type="text"
                 className="form-control"
                 placeholder={counter}
-                aria-label="Example text with button addon"
-                aria-describedby="button-addon1"
                 disabled={true}
               />
               <button
@@ -31,7 +29,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
                 className="btn btn-outline-secondary"
                 type="button"
                 id="button-addon1"
-                disabled={counter == stock}
+                disabled={counter === stock}
               > + </button>
             </div>
           </div>
@@ -40,8 +38,8 @@ const ItemCount = ({stock, initial, onAdd}) => {
           <button 
           onClick={(e) => onAdd(e, counter)} 
           className="btn btn-block btn-primary"
-          disabled={stock==0}>
-            {(stock == 0) ? `Sin Stock` : `Agregar al carrito` }
+          disabled={stock === 0}>
+            {(stock === 0) ? `Sin Stock` : `Agregar al carrito` }
           </button>
         </div>
       </div>
