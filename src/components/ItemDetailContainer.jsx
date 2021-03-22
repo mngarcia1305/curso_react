@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
           .then((res) => res.json())
           .then((result) => result.find((rs) => rs.id === parseInt(id)))
           );
-        }, 500);
+        }, 2000);
       }).then((resultado) => setItem(resultado))
       .then(() => setVisible(true));
 

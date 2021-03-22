@@ -15,7 +15,7 @@ const ItemListContainer = () => {
           id ? result.filter((rs) => rs.category === id) : result
         )
         .then((filterItems) => setItems(filterItems));
-    }, 500);
+    }, 2000);
   }, [id]);
 
   return (
