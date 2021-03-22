@@ -9,7 +9,8 @@ const ItemList = ({items}) => {
     title={prop.title}
     text={prop.text}
     stock={prop.stock}
-    price={prop.price} />
+    price={prop.price}
+    id={prop.id} />
     </div>
 );
 

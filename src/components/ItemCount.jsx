@@ -10,7 +10,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
       <div className="container">
         <div className="row">
           <div className="col">
-            <div className="input-group mb-3">
+            <div className="input-group mb-3" style={{width: '9rem'}}>
               <button
               onClick={() => setCounter((counter) => counter - 1)}
                 className="btn btn-outline-secondary"
@@ -33,14 +33,6 @@ const ItemCount = ({stock, initial, onAdd}) => {
               > + </button>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <button 
-          onClick={(e) => onAdd(e, counter)} 
-          className="btn btn-block btn-primary"
-          disabled={stock === 0}>
-            {(stock === 0) ? `Sin Stock` : `Agregar al carrito` }
-          </button>
         </div>
       </div>
     );
