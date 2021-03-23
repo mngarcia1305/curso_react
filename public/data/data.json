@@ -14,7 +14,7 @@
     "image": "prod-2.png",
     "title": "Alimento Old Prince",
     "text": "Receta Original Para Perro  - 20Kg",
-    "stock": 0,
+    "stock": 1,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam velit sed quam ullamcorper tristique. In convallis sagittis odio tincidunt congue. Sed auctor nisi quis ex congue, vitae venenatis erat molestie.",
     "price": 1900,
     "category": "perros"

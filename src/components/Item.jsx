@@ -5,7 +5,7 @@ const Item = ({title, image, text, stock, price, id}) => {
 
     return (
         <div className="card mb-5" style={{width: '18rem'}} >
-        <NavLink to={`/item/${id}`}><img src={`/img/${image}`} className="card-img-top" alt="" /></NavLink>
+        <NavLink to={`/item/${id}`}><img src={`/img/${image}`} className="card-img-top" alt=""/></NavLink>
         <div className="card-body">
           <h5 className="text-center card-title">{title}</h5>
           <p className="card-text">{text}</p>

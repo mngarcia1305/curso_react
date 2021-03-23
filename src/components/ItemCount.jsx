@@ -5,14 +5,23 @@ const ItemCount = ({stock, initial, onAdd}) => {
 
     const [counter, setCounter] = useState(initial);
 
+    const addCounter = () => {
+      setCounter((counter) => counter + 1);
+    }
+    const substractCounter = () => {
+      setCounter((counter) => counter - 1);
+    }
+     const StockAdvice = () => (
+      stock===counter ? <p className="text-danger fs-6">Máximo stock disponible</p> : <p className="text-danger fs-6">Solo tenemos {stock-counter} en stock!</p>
+     )
 
     return (
       <div className="container">
         <div className="row">
-          <div className="col">
+          <div className="col-4">
             <div className="input-group mb-3" style={{width: '9rem'}}>
               <button
-              onClick={() => setCounter((counter) => counter - 1)}
+              onClick={substractCounter}
                 className="btn btn-outline-secondary"
                 type="button"
                 id="button-addon1"
@@ -25,7 +34,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
                 disabled={true}
               />
               <button
-                onClick={() => setCounter((counter) => counter + 1)}
+                onClick={addCounter}
                 className="btn btn-outline-secondary"
                 type="button"
                 id="button-addon1"
@@ -33,7 +42,12 @@ const ItemCount = ({stock, initial, onAdd}) => {
               > + </button>
             </div>
           </div>
+          <div className="col">
+            <button className="btn btn-primary text-left" 
+            onClick={() => onAdd(counter)}
+            disabled={counter===0}>Añadir</button></div>
         </div>
+        <div><StockAdvice /></div>
       </div>
     );
 
