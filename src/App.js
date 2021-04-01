@@ -1,34 +1,16 @@
-
-import ItemListContainer from './components/ItemListContainer.jsx';
-import NavBar from './components/NavBar.jsx';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import ItemDetailContainer from './components/ItemDetailContainer.jsx';
-import Cart from './components/Cart.jsx';
+import React from "react";
+import CartProvider from "./context/CartProvider.jsx";
+import RoutesApp from './routes/RoutesApp.jsx';
 
 
 function App() {
 
   return (
-    <div>
-      <Router>
-      <NavBar />
-      <Switch>
-      <Route path='/item/:id?'>
-          <ItemDetailContainer/>
-      </Route>
-      <Route path='/category/:id?'>
-          <ItemListContainer/>
-      </Route>
-      <Route path='/cart'>
-          <Cart />
-      </Route>
-      <Route path='/'>
-          <ItemListContainer/>
-      </Route>
-
-      </Switch>
-      </Router>
-    </div>
+    
+      <CartProvider>
+     <RoutesApp />
+     </CartProvider>
+    
   );
 }
 

@@ -1,7 +1,6 @@
 import Item from './Item.jsx';
 
 const ItemList = ({items}) => {
-    // console.log(items);
     const listItems = items.map((prop, id) =>
     <div className='col' key = {prop.id}>
     <Item
@@ -15,7 +14,7 @@ const ItemList = ({items}) => {
 );
 
     return (
-        
+            
            <div className='row'>
             {listItems}
             </div>

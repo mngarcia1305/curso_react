@@ -25,7 +25,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
                 className="btn btn-outline-secondary"
                 type="button"
                 id="button-addon1"
-                disabled={counter <= 1 }
+                disabled={counter <= 0 }
               > - </button>
               <input
                 type="text"
@@ -45,7 +45,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
           <div className="col">
             <button className="btn btn-primary text-left" 
             onClick={() => onAdd(counter)}
-            disabled={counter===0}>Añadir</button></div>
+            disabled={counter===0}> Añadir al Carrito</button></div>
         </div>
         <div><StockAdvice /></div>
       </div>

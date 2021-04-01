@@ -1,33 +1,46 @@
 import { NavLink } from "react-router-dom";
 import ItemCount from "./ItemCount";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import CartContext from "../context/CartContext";
 const ItemDetail = ({ item }) => {
   const { title, image, text, stock, price, id, category, description } = item;
   const [qty, setQty] = useState(0);
   const [action, setAction] = useState("select");
+  const { addItem, removeItem } = useContext(CartContext);
 
   const itemCounter = () => (
     <ItemCount initial={qty} stock={stock} onAdd={addProduct} />
   );
+
   const buyButton = () => (
     <div>
-    <NavLink to="/cart" className="btn btn-block btn-success">
-      {`Finalizar Compra (${qty}) items`}
-    </NavLink>
-    <button className="btn btn-danger text-left ms-5 btn-sm" onClick={() => resetProduct()}>Cambiar cantidad</button>
+      <NavLink to="/cart" className="btn btn-block btn-success">
+        {`Finalizar Compra`}
+      </NavLink>
+      <button
+        className="btn btn-danger text-left ms-5 btn-sm"
+        onClick={() => resetProduct()}
+      >
+        Cambiar cantidad
+      </button>
     </div>
   );
+
   const Count = action === "buy" ? buyButton : itemCounter;
 
   const addProduct = (counter) => {
     setQty(counter);
+    addItem({ id, title, image, price }, counter);
     setAction("buy");
   };
+
   const resetProduct = () => {
     setAction("select");
+    removeItem(id);
   };
 
+
+  
   return (
     <div className="card mb-3" style={{ width: "70%" }}>
       <div className="row g-0">
