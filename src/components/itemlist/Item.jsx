@@ -1,7 +1,7 @@
 
 import {NavLink} from "react-router-dom";
 
-const Item = ({title, image, text, stock, price, id}) => {
+const Item = ({title, image, text, price, id}) => {
 
     return (
         <div className="card mb-5" style={{width: '18rem'}} >

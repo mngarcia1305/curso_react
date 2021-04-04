@@ -1,55 +1,59 @@
 import ItemList from "./ItemList.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../loading/LoadingSpinner.jsx";
 
 const ItemListContainer = () => {
   let { id } = useParams();
 
   const [items, setItems] = useState([]);
   const [sortType, setSortType] = useState("default");
+  const [loading, setLoading] = useState(true);
+
+  const sort = (type) => {
+    setSortType(type);
+  }
 
   useEffect(() => {
-    // console.log('efecto de carga de datos')
+
     setTimeout(() => {
       fetch("/data/data.json")
         .then((res) => res.json())
         .then((result) =>
           id ? result.filter((rs) => rs.category === id) : result
         )
-        .then((filterItems) => setItems(filterItems));
-    }, 500);
+        .then((filterItems) => setItems(filterItems))
+        .then(() => setLoading(false));
+    }, 2000);
+
+    return (
+      setLoading(true)
+    )
   }, [id]);
 
   useEffect(() => {
-    // console.log('efecto de order')
+    console.log('efecto orden', sortType)
     const sortItems = (type) => {
-
       const sorted = (type === "asc") ? [...items].sort((a, b) => a.price - b.price) : [...items].sort((a, b) => b.price - a.price);
-      setItems (sorted);
-      
+      setItems(sorted);
     }
-
     sortItems(sortType)
+
+    
 
   }, [sortType])
 
-  // const orderByPrice = (orderBy) =>  setOrder(orderBy);
+  const sectionTitle = id ? `Productos para ${id}` : 'Productos para tus Mascotas';
 
   return (
-    <div className="container p-5">
-      <div className="row justify-content-right mb-4">
-        <div className="col-3">
-        <select className="form-select" onChange={(e) => setSortType(e.target.value)}>
-  <option defaultValue="default">Ordenar</option>
-  <option value="asc">Menor precio</option>
-        <option value="desc">Mayor precio</option>
-</select>
-       
-          
-        </div>
+    <>
+      <div className="alert alert-info text-center"><h3>{sectionTitle}</h3></div>
+      <div className="container p-5">
+
+
+        {loading ? <LoadingSpinner /> : <ItemList items={items} sort={sort}/>}
       </div>
-      <ItemList items={items} />
-    </div>
+    </>
   );
 };
 

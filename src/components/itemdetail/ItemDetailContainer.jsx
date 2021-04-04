@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import LoadingSpinner from "../loading/LoadingSpinner";
 import ItemDetail from "./ItemDetail";
-
 
 const ItemDetailContainer = () => {
   let {id} = useParams();
   const [item, setItem] = useState([]);
-  const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect (
     () => {
@@ -18,11 +18,11 @@ const ItemDetailContainer = () => {
           .then((res) => res.json())
           .then((result) => result.find((rs) => rs.id === parseInt(id)))
           );
-        }, 500);
+        }, 1000);
       }).then((resultado) => setItem(resultado))
-      .then(() => setVisible(true));
+      .then(() => setLoading(false));
 
-      return setVisible(false);
+      return setLoading(true);
 
   }, [id])
 
@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
   return (
     
     <div className="container d-flex justify-content-center mt-5">
-        {visible && <ItemDetail item={item}/>}
+        {loading ? <LoadingSpinner /> : <ItemDetail item={item}/>}
     </div>
   );
 };

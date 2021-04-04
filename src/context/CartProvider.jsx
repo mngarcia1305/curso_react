@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import CartContext from "./CartContext";
 const CartProvider = ({ defaultValue = [], children }) => {
   const [cart, setCart] = useState(defaultValue);
-  const [total, setTotal] = useState(0)
-  console.log(cart);
+  // console.log(cart);
 
   const addItem = (item, quantity) => {
     setCart([...cart, { item, quantity }]);
@@ -18,14 +17,10 @@ const CartProvider = ({ defaultValue = [], children }) => {
   };
 
   const clear = () => {
-    // Aca limpiamos nuestro contexto tendriamos que volver a setear el valor por defecto.
-    console.log("Se limpio el carrito. Ahora no hay productos.");
+    setCart(defaultValue);
   };
 
-  const isInCart = (itemId) => {
-    //Aca podríamos hacer un find en array, si lo encuentra se retorna true sino false
-    console.log("Estamos buscando el producto");
-  };
+  const isInCart = (itemId) => cart.some(e => e.item.id === itemId);
 
 
   const modifyItem = (itemId) => {
@@ -33,14 +28,15 @@ const CartProvider = ({ defaultValue = [], children }) => {
   }
 
   const getCartTotal = () => {
-    let total=0;
+    let total = 0;
     cart.forEach(d => total += parseInt(d.item.price) * parseInt(d.quantity));
     return total;
   }
 
+
   return (
     <CartContext.Provider
-      value={{ cart, addItem, removeItem, clear, getCartTotal }}
+      value={{ cart, addItem, removeItem, clear, getCartTotal, isInCart }}
     >
       {children}
     </CartContext.Provider>
