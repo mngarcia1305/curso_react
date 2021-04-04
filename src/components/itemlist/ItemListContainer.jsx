@@ -12,10 +12,9 @@ const ItemListContainer = () => {
 
   const sort = (type) => {
     setSortType(type);
-  }
+  };
 
   useEffect(() => {
-
     setTimeout(() => {
       fetch("/data/data.json")
         .then((res) => res.json())
@@ -26,32 +25,31 @@ const ItemListContainer = () => {
         .then(() => setLoading(false));
     }, 2000);
 
-    return (
-      setLoading(true)
-    )
+    return setLoading(true);
   }, [id]);
 
   useEffect(() => {
-    console.log('efecto orden', sortType)
     const sortItems = (type) => {
-      const sorted = (type === "asc") ? [...items].sort((a, b) => a.price - b.price) : [...items].sort((a, b) => b.price - a.price);
+      const sorted =
+        type === "asc"
+          ? [...items].sort((a, b) => a.price - b.price)
+          : [...items].sort((a, b) => b.price - a.price);
       setItems(sorted);
-    }
-    sortItems(sortType)
+    };
+    sortItems(sortType);
+  }, [sortType]);
 
-    
-
-  }, [sortType])
-
-  const sectionTitle = id ? `Productos para ${id}` : 'Productos para tus Mascotas';
+  const sectionTitle = id
+    ? `Productos para ${id}`
+    : "Productos para tus Mascotas";
 
   return (
     <>
-      <div className="alert alert-info text-center"><h3>{sectionTitle}</h3></div>
+      <div className="alert alert-info text-center">
+        <h3>{sectionTitle}</h3>
+      </div>
       <div className="container p-5">
-
-
-        {loading ? <LoadingSpinner /> : <ItemList items={items} sort={sort}/>}
+        {loading ? <LoadingSpinner /> : <ItemList items={items} sort={sort} />}
       </div>
     </>
   );

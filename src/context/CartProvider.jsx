@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CartContext from "./CartContext";
 const CartProvider = ({ defaultValue = [], children }) => {
   const [cart, setCart] = useState(defaultValue);
-  // console.log(cart);
 
   const addItem = (item, quantity) => {
     setCart([...cart, { item, quantity }]);
@@ -20,16 +19,16 @@ const CartProvider = ({ defaultValue = [], children }) => {
     setCart(defaultValue);
   };
 
-  const isInCart = (itemId) => cart.some(e => e.item.id === itemId);
+  const isInCart = (itemId) => cart.some(o => o.item.id === itemId);
 
 
-  const modifyItem = (itemId) => {
-    console.log(itemId)
-  }
+  // const modifyItem = (itemId) => {
+  //   console.log(itemId)
+  // }
 
   const getCartTotal = () => {
     let total = 0;
-    cart.forEach(d => total += parseInt(d.item.price) * parseInt(d.quantity));
+    cart.forEach(o => total += parseInt(o.item.price) * parseInt(o.quantity));
     return total;
   }
 

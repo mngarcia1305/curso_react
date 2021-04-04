@@ -10,7 +10,7 @@ const CartWidget = () => {
 
     useEffect(() => {
         let totalItems = 0;
-        cart.forEach(d => totalItems += d.quantity);
+        cart.forEach(o => totalItems += o.quantity);
         setTotalItems(totalItems);
         
     }, [cart])
