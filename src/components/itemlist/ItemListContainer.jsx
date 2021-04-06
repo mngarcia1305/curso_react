@@ -2,6 +2,7 @@ import ItemList from "./ItemList.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../loading/LoadingSpinner.jsx";
+import { GetFirestore } from "../../firebase/Firebase";
 
 const ItemListContainer = () => {
   let { id } = useParams();
@@ -15,15 +16,25 @@ const ItemListContainer = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch("/data/data.json")
-        .then((res) => res.json())
-        .then((result) =>
-          id ? result.filter((rs) => rs.category === id) : result
-        )
-        .then((filterItems) => setItems(filterItems))
-        .then(() => setLoading(false));
-    }, 2000);
+    const db = GetFirestore();
+    const itemCollection = id
+      ? db.collection("products").where("category", "==", id)
+      : db.collection("products");
+
+    itemCollection.get()
+      .then((data) => {
+        if (data.size === 0) {
+          console.log("No results!");
+        }
+        //setItems(data.docs.map(doc => doc.data()));
+        setItems(data.docs.map((c) => ({ id: c.id, ...c.data() })));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
     return setLoading(true);
   }, [id]);
