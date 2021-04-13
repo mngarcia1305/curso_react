@@ -8,6 +8,7 @@ const CartWidget = () => {
     const { cart } = useContext(CartContext);
     const [totalItems, setTotalItems] = useState(0)
 
+// pasar esto al context provider
     useEffect(() => {
         let totalItems = 0;
         cart.forEach(o => totalItems += o.quantity);

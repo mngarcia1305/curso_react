@@ -26,7 +26,6 @@ const ItemListContainer = () => {
         if (data.size === 0) {
           console.log("No results!");
         }
-        //setItems(data.docs.map(doc => doc.data()));
         setItems(data.docs.map((c) => ({ id: c.id, ...c.data() })));
       })
       .catch((error) => {
@@ -47,8 +46,10 @@ const ItemListContainer = () => {
           : [...items].sort((a, b) => b.price - a.price);
       setItems(sorted);
     };
+    
     sortItems(sortType);
-  }, [sortType]);
+    
+  }, [sortType]) ; 
 
   const sectionTitle = id
     ? `Productos para ${id}`
