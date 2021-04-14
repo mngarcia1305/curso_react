@@ -32,9 +32,11 @@ const Cart = () => {
         <div className="text-end mb-5"><button className='btn btn-secondary' onClick={() => clear()}>Vaciar Carrito</button></div>
         <ul className="list-group">{cartItems}</ul>
         <h4 className="text-end mt-4 fw-bold">Total: ${total}</h4>
-        <div className="text-end"><NavLink to="/checkout" className="btn btn-primary" >Finalizar Compra</NavLink></div>
+        <div className="text-end mt-5">
+        <NavLink to="/itemListContainer" className="btn btn-outline-success me-5">Seguir Comprando</NavLink>
+        <NavLink to="/checkout" className="btn btn-primary" >Finalizar Compra</NavLink>
+        </div>
       </div>
-      
     </div>
   </div>
   </div>

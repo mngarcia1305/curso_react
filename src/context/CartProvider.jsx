@@ -21,7 +21,12 @@ const CartProvider = ({ defaultValue = [], children }) => {
 
   const isInCart = (itemId) => cart.some(o => o.item.id === itemId);
 
-
+// pasar esto al context provider
+const getTotalItems = () => {
+  let total = 0;
+  cart.forEach(o => total += o.quantity);
+  return total;
+}
   // const modifyItem = (itemId) => {
   //   console.log(itemId)
   // }
@@ -31,11 +36,11 @@ const CartProvider = ({ defaultValue = [], children }) => {
     cart.forEach(o => total += parseInt(o.item.price) * parseInt(o.quantity));
     return total;
   }
-
+  
 
   return (
     <CartContext.Provider
-      value={{ cart, addItem, removeItem, clear, getCartTotal, isInCart }}
+      value={{ cart, addItem, removeItem, clear, getCartTotal, isInCart, getTotalItems }}
     >
       {children}
     </CartContext.Provider>
