@@ -1,4 +1,3 @@
-import CartContext from "../../../context/CartContext";
 
 const CheckOutResume = ({order}) => {
   const { id, newOrder:{buyer, products, createOn, total} } = order;
