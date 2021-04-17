@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CartContext from "./CartContext";
 const CartProvider = ({ defaultValue = [], children }) => {
   const [cart, setCart] = useState(defaultValue);
-  // console.log(cart);
 
   const addItem = (item, quantity) => {
     setCart([...cart, { item, quantity }]);
@@ -20,23 +19,34 @@ const CartProvider = ({ defaultValue = [], children }) => {
     setCart(defaultValue);
   };
 
-  const isInCart = (itemId) => cart.some(e => e.item.id === itemId);
+  const isInCart = (itemId) => cart.some(o => o.item.id === itemId);
 
 
-  const modifyItem = (itemId) => {
-    console.log(itemId)
-  }
+const getTotalItems = () => {
+  let total = 0;
+  cart.forEach(o => total += o.quantity);
+  return total;
+}
 
   const getCartTotal = () => {
     let total = 0;
-    cart.forEach(d => total += parseInt(d.item.price) * parseInt(d.quantity));
+    cart.forEach(o => total += parseInt(o.item.price) * parseInt(o.quantity));
     return total;
   }
-
+  
+  const getCartItems = cart.map(data => {
+    const item = {
+      id: data.item.id,
+      title: data.item.title,
+      price: data.item.price,
+      quantity: data.quantity
+    };
+    return item;
+  });
 
   return (
     <CartContext.Provider
-      value={{ cart, addItem, removeItem, clear, getCartTotal, isInCart }}
+      value={{ cart, addItem, removeItem, clear, getCartTotal, isInCart, getTotalItems, getCartItems }}
     >
       {children}
     </CartContext.Provider>

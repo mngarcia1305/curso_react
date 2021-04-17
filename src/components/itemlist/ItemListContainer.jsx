@@ -2,56 +2,58 @@ import ItemList from "./ItemList.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../loading/LoadingSpinner.jsx";
+import { GetFirestore } from "../../firebase/Firebase";
 
 const ItemListContainer = () => {
   let { id } = useParams();
 
   const [items, setItems] = useState([]);
-  const [sortType, setSortType] = useState("default");
   const [loading, setLoading] = useState(true);
 
   const sort = (type) => {
-    setSortType(type);
-  }
+    const sorted =
+      type === "asc"
+        ? [...items].sort((a, b) => a.price - b.price)
+        : [...items].sort((a, b) => b.price - a.price);
+    setItems(sorted);
+  };
 
   useEffect(() => {
+    const db = GetFirestore();
+    const itemCollection = id
+      ? db.collection("products").where("category", "==", id)
+      : db.collection("products");
 
-    setTimeout(() => {
-      fetch("/data/data.json")
-        .then((res) => res.json())
-        .then((result) =>
-          id ? result.filter((rs) => rs.category === id) : result
-        )
-        .then((filterItems) => setItems(filterItems))
-        .then(() => setLoading(false));
-    }, 2000);
+    itemCollection
+      .get()
+      .then((data) => {
+        if (data.size === 0) {
+          console.log("No results!");
+        }
+        setItems(data.docs.map((c) => ({ id: c.id, ...c.data() })));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-    return (
-      setLoading(true)
-    )
+    return setLoading(true);
   }, [id]);
 
-  useEffect(() => {
-    console.log('efecto orden', sortType)
-    const sortItems = (type) => {
-      const sorted = (type === "asc") ? [...items].sort((a, b) => a.price - b.price) : [...items].sort((a, b) => b.price - a.price);
-      setItems(sorted);
-    }
-    sortItems(sortType)
 
-    
-
-  }, [sortType])
-
-  const sectionTitle = id ? `Productos para ${id}` : 'Productos para tus Mascotas';
+  const sectionTitle = id
+    ? `Productos para ${id}`
+    : "Productos para tus Mascotas";
 
   return (
     <>
-      <div className="alert alert-info text-center"><h3>{sectionTitle}</h3></div>
+      <div className="alert alert-info text-center">
+        <h3>{sectionTitle}</h3>
+      </div>
       <div className="container p-5">
-
-
-        {loading ? <LoadingSpinner /> : <ItemList items={items} sort={sort}/>}
+        {loading ? <LoadingSpinner /> : <ItemList items={items} sort={sort} />}
       </div>
     </>
   );

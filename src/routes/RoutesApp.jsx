@@ -4,6 +4,8 @@ import NavBar from '../components/navbar/NavBar.jsx';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ItemDetailContainer from '../components/itemdetail/ItemDetailContainer.jsx';
 import Cart from '../components/cart/Cart';
+import CheckOut from "../components/checkout/CheckOut";
+
 
 const RoutesApp = () => {
   return (
@@ -11,6 +13,9 @@ const RoutesApp = () => {
       <Router>
         <NavBar />
         <Switch>
+          <Route path="/checkout">
+            <CheckOut/>
+          </Route>
           <Route path="/item/:id?">
             <ItemDetailContainer />
           </Route>

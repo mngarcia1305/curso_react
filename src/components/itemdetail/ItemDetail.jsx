@@ -35,8 +35,6 @@ const ItemDetail = ({ item }) => {
     <div>El item ya existe en el carrito</div>
   )
 
-  // const Count = action === "buy" ? buyButton : itemCounter;
-
     const Count = () => {
       switch (action) {
         case 'buy':
@@ -47,10 +45,9 @@ const ItemDetail = ({ item }) => {
   
           case 'exists':
           return(itemExistInCart())
-           
+
         default:
           return(itemCounter())
-          
       }
     }
 

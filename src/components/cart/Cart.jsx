@@ -9,8 +9,9 @@ const Cart = () => {
   const total = getCartTotal();
 
   const itemSubtotal = (price, quantity) => price * quantity;
+  
 
-  const cartItems = cart.map((prop, id) => (
+  const cartItems = cart.map((prop) => (
     <CartItem
       image={prop.item.image}
       title={prop.item.title}
@@ -28,9 +29,13 @@ const Cart = () => {
     <div className="container justify-content-center p-5">
     <div className="row justify-content-md-center">
       <div className="col-10">
-        <div className="text-end mb-5"><button className='btn btn-primary' onClick={() => clear()}>Vaciar Carrito</button></div>
+        <div className="text-end mb-5"><button className='btn btn-secondary' onClick={() => clear()}>Vaciar Carrito</button></div>
         <ul className="list-group">{cartItems}</ul>
         <h4 className="text-end mt-4 fw-bold">Total: ${total}</h4>
+        <div className="text-end mt-5">
+        <NavLink to="/itemListContainer" className="btn btn-outline-success me-5">Seguir Comprando</NavLink>
+        <NavLink to="/checkout" className="btn btn-primary" >Finalizar Compra</NavLink>
+        </div>
       </div>
     </div>
   </div>
