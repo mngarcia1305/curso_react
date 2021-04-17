@@ -34,7 +34,7 @@ const CheckOutForm = ({submitForm}) => {
                     value={values.name}
                     onChange={handleChange}
                   />
-                  {errors.name && <p>{errors.name}</p>}
+                  {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
 
                 <div className="col-12">
@@ -50,7 +50,7 @@ const CheckOutForm = ({submitForm}) => {
                     value = {values.phone}
                     onChange={handleChange}
                   />
-                  {errors.phone && <p>{errors.phone}</p>}
+                  {errors.phone && <div className="text-danger">{errors.phone}</div>}
                 </div>
 
                 <div className="col-12">
@@ -66,7 +66,7 @@ const CheckOutForm = ({submitForm}) => {
                     value={values.email}
                     onChange={handleChange}
                   />
-                {errors.email && <p>{errors.email}</p>}
+                {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
                 <div className="col-12">
                   <label htmlFor="email_repeat" className="form-label">
@@ -81,7 +81,7 @@ const CheckOutForm = ({submitForm}) => {
                     value={values.emailRepeat}
                     onChange={handleChange}
                   />
-                {errors.emailRepeat && <p>{errors.emailRepeat}</p>}
+                {errors.emailRepeat && <div className="text-danger">{errors.emailRepeat}</div>}
                 </div>
               </div>
 

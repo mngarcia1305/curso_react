@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
@@ -8,7 +8,6 @@ const useForm = (callback, validate) => {
     emailRepeat: ''
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -21,18 +20,13 @@ const useForm = (callback, validate) => {
   const handleSubmit = e => {
     e.preventDefault();
     setErrors(validate(values));
-    setIsSubmitting(true);
+    console.log(validate(values))
+ 
+    if (Object.keys(validate(values)).length === 0) {
+      console.log("no hay errores")
+      //callback(values);
+    }
   };
-
-  useEffect(
-    () => {
-      if (Object.keys(errors).length === 0 && isSubmitting) {
-        callback(values);
-      }
-    },
-    [errors]
-  );
-
   return { handleChange, handleSubmit, values, errors };
 };
 
