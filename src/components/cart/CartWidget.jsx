@@ -6,7 +6,6 @@ import './Cart.css';
 
 const CartWidget = () => {
     const { getTotalItems } = useContext(CartContext);
-
     return (
         <NavLink to='/cart' className='me-3'>
             <span className={getTotalItems() !==0 ? "fa-stack fa-5x has-badge" : ""} data-count={getTotalItems()}>

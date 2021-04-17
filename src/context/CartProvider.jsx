@@ -21,7 +21,6 @@ const CartProvider = ({ defaultValue = [], children }) => {
 
   const isInCart = (itemId) => cart.some(o => o.item.id === itemId);
 
-
 const getTotalItems = () => {
   let total = 0;
   cart.forEach(o => total += o.quantity);
