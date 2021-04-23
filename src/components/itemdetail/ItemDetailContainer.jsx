@@ -3,6 +3,9 @@ import { useParams } from "react-router";
 import LoadingSpinner from "../loading/LoadingSpinner";
 import ItemDetail from "./ItemDetail";
 import { GetFirestore } from "../../firebase/Firebase";
+import ItemError from "./ItemError";
+
+
 
 const ItemDetailContainer = () => {
   let { id } = useParams();
@@ -15,11 +18,16 @@ const ItemDetailContainer = () => {
     
     itemData.get()
       .then((d) => {
-        if (d.size === 0) {
+        
+        if (d.exists) {
+          setItem({id: d.id, ...d.data()});
+          
+        } else {
+          setItem([]);
+          console.log(item)
           console.log("No results!");
         }
-        //setItems(data.docs.map(doc => doc.data()));
-        setItem({id: d.id, ...d.data()});
+        
       })
       .catch((error) => {
         console.log(error);
@@ -31,9 +39,13 @@ const ItemDetailContainer = () => {
     return setLoading(true);
   }, [id]);
 
+  const ViewItem = () => (
+    item.length !== 0 ? <ItemDetail item={item} /> : <ItemError />
+    )
+
   return (
     <div className="container d-flex justify-content-center mt-5">
-      {loading ? <LoadingSpinner /> : <ItemDetail item={item} />}
+      {loading ? <LoadingSpinner /> : <ViewItem />}
     </div>
   );
 };

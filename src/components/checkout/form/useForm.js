@@ -24,7 +24,7 @@ const useForm = (callback, validate) => {
  
     if (Object.keys(validate(values)).length === 0) {
       console.log("no hay errores")
-      //callback(values);
+      callback(values);
     }
   };
   return { handleChange, handleSubmit, values, errors };

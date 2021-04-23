@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import CartContext from "../../context/CartContext";
 
 const ItemDetail = ({ item }) => {
+
   const { title, image, text, stock, price, id, category, description } = item;
   const [qty, setQty] = useState(0);
   const [action, setAction] = useState("select");
