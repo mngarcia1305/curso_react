@@ -3,7 +3,7 @@
 Tienda E-commerce de alimentos y productos para Perros y Gatos.
 
 ## URL Build del proyecto
-https://www.3241.com.ar/petfoodonline
+https://petfoodonline.netlify.app/
 
 ## Código fuente 
 
