@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 
 const CheckOutResume = ({order}) => {
   const { id, newOrder:{buyer, products, createOn, total} } = order;
@@ -83,8 +85,10 @@ const CheckOutResume = ({order}) => {
                     <p className="font-weight-bold mb-0">Gracias por confiar en</p> <span>PetFood Online!</span>
                 </div>
             </div>
+            
         </div>
     </div>
+        <div className="text-center mt-5"><NavLink to="/itemListContainer" className="btn btn-outline-success">Seguir Comprando</NavLink></div>
   </div>
   );
 };

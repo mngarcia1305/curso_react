@@ -1,6 +1,7 @@
 import { useState} from "react";
 
 
+
 const ItemCount = ({stock, initial, onAdd}) => {
 
     const [counter, setCounter] = useState(initial);
@@ -18,6 +19,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
     return (
       <div className="container">
         <div className="row">
+        
           <div className="col-4">
             <div className="input-group mb-3" style={{width: '9rem'}}>
               <button

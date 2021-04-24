@@ -56,7 +56,7 @@ const ItemDetail = ({ item }) => {
     // chequear si existe el producto en el carrito
     setQty(counter);
     if (isInCart(id) === false) {
-      addItem({ id, title, image, price }, counter);
+      addItem({ id, title, image, price, stock }, counter);
       setAction("buy");
     } else {
       setAction("exists");

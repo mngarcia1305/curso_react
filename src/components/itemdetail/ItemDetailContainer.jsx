@@ -5,29 +5,23 @@ import ItemDetail from "./ItemDetail";
 import { GetFirestore } from "../../firebase/Firebase";
 import ItemError from "./ItemError";
 
-
-
 const ItemDetailContainer = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const db = GetFirestore();
-    const itemData = db.collection('products').doc(id)
-    
-    itemData.get()
+    const itemData = db.collection("products").doc(id);
+
+    itemData
+      .get()
       .then((d) => {
-        
         if (d.exists) {
-          setItem({id: d.id, ...d.data()});
-          
+          setItem({ id: d.id, ...d.data() });
         } else {
           setItem([]);
-          console.log(item)
-          console.log("No results!");
         }
-        
       })
       .catch((error) => {
         console.log(error);
@@ -39,9 +33,7 @@ const ItemDetailContainer = () => {
     return setLoading(true);
   }, [id]);
 
-  const ViewItem = () => (
-    item.length !== 0 ? <ItemDetail item={item} /> : <ItemError />
-    )
+  const ViewItem = () => item.length !== 0 ? <ItemDetail item={item} /> : <ItemError />;
 
   return (
     <div className="container d-flex justify-content-center mt-5">
