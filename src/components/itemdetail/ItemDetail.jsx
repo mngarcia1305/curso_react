@@ -86,7 +86,7 @@ const ItemDetail = ({ item }) => {
                   </NavLink>
                 </li>
                 <li className="breadcrumb-item " aria-current="page">
-                  <NavLink to={`/ItemDetailContainer/${category}`} className="">
+                  <NavLink to={`/category/${category}`} className="">
                     {category}
                   </NavLink>
                 </li>
